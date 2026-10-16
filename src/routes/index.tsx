@@ -22,7 +22,7 @@ function Index() {
           <p className="eyebrow">Robotics · Engineering · Design</p>
           <h1 className="mt-5 text-6xl leading-[0.98] md:text-8xl">Seraj<br /><em className="text-primary">Abushnaf</em></h1>
           <p className="mt-8 max-w-md text-muted-foreground">
-            A portfolio of robotics, FTC and engineering work. Add your short introduction here.
+            Libyan robotics student · FTC autonomous lead programmer and robot designer for TLC CyberKnights and LyBrix.
           </p>
           <Link to="/contributions" className="eyebrow mt-10 inline-block border-b border-foreground pb-1 text-foreground">View contributions</Link>
         </div>
@@ -32,7 +32,7 @@ function Index() {
       <section className="mx-auto mt-28 grid max-w-6xl gap-8 border-t px-6 pt-14 md:grid-cols-12">
         <p className="eyebrow md:col-span-3">Biography</p>
         <p className="font-serif text-2xl leading-snug md:col-span-8 md:text-3xl">
-          Add a concise biography: your background, your interest in robotics and engineering, and what you want to study.
+          I lead autonomous programming and robot design in FTC, build Arduino prototypes, mentor younger students, and run a 3D-printing business alongside web and video work.
         </p>
       </section>
 
@@ -42,7 +42,7 @@ function Index() {
           <Link to="/contributions" className="eyebrow">All</Link>
         </div>
         <div className="mt-10 grid gap-10 md:grid-cols-12">
-          {projects.map((p, i) => (
+          {projects.slice(0, 3).map((p, i) => (
             <Link key={p.slug} to="/contributions/$slug" params={{ slug: p.slug }}
               className={`group ${i === 0 ? "md:col-span-7" : "md:col-span-5"} ${i === 2 ? "md:col-start-6 md:col-span-7" : ""}`}>
               <Placeholder label={p.category} className={`${i === 0 ? "aspect-[4/3]" : "aspect-square"} transition-opacity group-hover:opacity-80`} />
@@ -59,11 +59,11 @@ function Index() {
           <Link to="/awards" className="eyebrow">Archive</Link>
         </div>
         <ul>
-          {awards.map((a, i) => (
-            <li key={i} className="grid grid-cols-12 gap-4 border-b py-6">
-              <span className="eyebrow col-span-3 md:col-span-2">{a.year}</span>
+          {awards.map((a) => (
+            <li key={a.title} className="grid grid-cols-12 gap-4 border-b py-6">
+              <span className="eyebrow col-span-3 md:col-span-2">{a.type}</span>
               <span className="col-span-9 font-serif text-xl md:col-span-6">{a.title}</span>
-              <span className="col-span-9 col-start-4 text-sm text-muted-foreground md:col-span-4 md:col-start-auto">{a.issuer}</span>
+              <span className="col-span-9 col-start-4 text-sm text-muted-foreground md:col-span-4 md:col-start-auto">{a.issuer}{a.year && ` · ${a.year}`}</span>
             </li>
           ))}
         </ul>
