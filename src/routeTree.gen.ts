@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AwardsRouteImport } from './routes/awards'
+import { Route as ContributionsRouteImport } from './routes/contributions'
+import { Route as ProofRouteImport } from './routes/proof'
+import { Route as SummaryRouteImport } from './routes/summary'
+import { Route as ContributionsSlugRouteImport } from './routes/contributions_.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AwardsRoute = AwardsRouteImport.update({
+  id: '/awards',
+  path: '/awards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContributionsRoute = ContributionsRouteImport.update({
+  id: '/contributions',
+  path: '/contributions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProofRoute = ProofRouteImport.update({
+  id: '/proof',
+  path: '/proof',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SummaryRoute = SummaryRouteImport.update({
+  id: '/summary',
+  path: '/summary',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContributionsSlugRoute = ContributionsSlugRouteImport.update({
+  id: '/contributions_/$slug',
+  path: '/contributions/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/awards': typeof AwardsRoute
+  '/contributions': typeof ContributionsRoute
+  '/proof': typeof ProofRoute
+  '/summary': typeof SummaryRoute
+  '/contributions/$slug': typeof ContributionsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/awards': typeof AwardsRoute
+  '/contributions': typeof ContributionsRoute
+  '/proof': typeof ProofRoute
+  '/summary': typeof SummaryRoute
+  '/contributions/$slug': typeof ContributionsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/awards': typeof AwardsRoute
+  '/contributions': typeof ContributionsRoute
+  '/proof': typeof ProofRoute
+  '/summary': typeof SummaryRoute
+  '/contributions_/$slug': typeof ContributionsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/awards'
+    | '/contributions'
+    | '/proof'
+    | '/summary'
+    | '/contributions/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/awards'
+    | '/contributions'
+    | '/proof'
+    | '/summary'
+    | '/contributions/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/awards'
+    | '/contributions'
+    | '/proof'
+    | '/summary'
+    | '/contributions_/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AwardsRoute: typeof AwardsRoute
+  ContributionsRoute: typeof ContributionsRoute
+  ProofRoute: typeof ProofRoute
+  SummaryRoute: typeof SummaryRoute
+  ContributionsSlugRoute: typeof ContributionsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/awards': {
+      id: '/awards'
+      path: '/awards'
+      fullPath: '/awards'
+      preLoaderRoute: typeof AwardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contributions': {
+      id: '/contributions'
+      path: '/contributions'
+      fullPath: '/contributions'
+      preLoaderRoute: typeof ContributionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/proof': {
+      id: '/proof'
+      path: '/proof'
+      fullPath: '/proof'
+      preLoaderRoute: typeof ProofRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/summary': {
+      id: '/summary'
+      path: '/summary'
+      fullPath: '/summary'
+      preLoaderRoute: typeof SummaryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contributions_/$slug': {
+      id: '/contributions_/$slug'
+      path: '/contributions/$slug'
+      fullPath: '/contributions/$slug'
+      preLoaderRoute: typeof ContributionsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AwardsRoute: AwardsRoute,
+  ContributionsRoute: ContributionsRoute,
+  ProofRoute: ProofRoute,
+  SummaryRoute: SummaryRoute,
+  ContributionsSlugRoute: ContributionsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
