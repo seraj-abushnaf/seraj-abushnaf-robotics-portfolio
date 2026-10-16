@@ -1,24 +1,73 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Placeholder } from "@/components/site";
+import { projects, awards } from "@/lib/content";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Seraj Abushnaf — Robotics & Engineering Portfolio" },
+      { name: "description", content: "Robotics, FTC contributions, CAD design and engineering projects by Seraj Abushnaf." },
+      { property: "og:title", content: "Seraj Abushnaf — Robotics & Engineering" },
+      { property: "og:description", content: "Engineering projects, FTC robotics contributions, awards and evidence." },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <section className="mx-auto grid max-w-6xl gap-10 px-6 pt-12 md:grid-cols-12 md:pt-20">
+        <div className="fade-up md:col-span-6 md:pt-16">
+          <p className="eyebrow">Robotics · Engineering · Design</p>
+          <h1 className="mt-5 text-6xl leading-[0.98] md:text-8xl">Seraj<br /><em className="text-primary">Abushnaf</em></h1>
+          <p className="mt-8 max-w-md text-muted-foreground">
+            A portfolio of robotics, FTC and engineering work. Add your short introduction here.
+          </p>
+          <Link to="/contributions" className="eyebrow mt-10 inline-block border-b border-foreground pb-1 text-foreground">View contributions</Link>
+        </div>
+        <Placeholder label="Portrait or robot" className="aspect-[4/5] md:col-span-6" />
+      </section>
+
+      <section className="mx-auto mt-28 grid max-w-6xl gap-8 border-t px-6 pt-14 md:grid-cols-12">
+        <p className="eyebrow md:col-span-3">Biography</p>
+        <p className="font-serif text-2xl leading-snug md:col-span-8 md:text-3xl">
+          Add a concise biography: your background, your interest in robotics and engineering, and what you want to study.
+        </p>
+      </section>
+
+      <section className="mx-auto mt-28 max-w-6xl px-6">
+        <div className="flex items-end justify-between border-b pb-6">
+          <h2 className="text-4xl md:text-5xl">Selected Projects</h2>
+          <Link to="/contributions" className="eyebrow">All</Link>
+        </div>
+        <div className="mt-10 grid gap-10 md:grid-cols-12">
+          {projects.map((p, i) => (
+            <Link key={p.slug} to="/contributions/$slug" params={{ slug: p.slug }}
+              className={`group ${i === 0 ? "md:col-span-7" : "md:col-span-5"} ${i === 2 ? "md:col-start-6 md:col-span-7" : ""}`}>
+              <Placeholder label={p.category} className={`${i === 0 ? "aspect-[4/3]" : "aspect-square"} transition-opacity group-hover:opacity-80`} />
+              <p className="eyebrow mt-4">{p.category}</p>
+              <h3 className="mt-1 text-2xl">{p.title}</h3>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="mx-auto mt-28 max-w-6xl px-6">
+        <div className="flex items-end justify-between border-b pb-6">
+          <h2 className="text-4xl md:text-5xl">Featured Achievements</h2>
+          <Link to="/awards" className="eyebrow">Archive</Link>
+        </div>
+        <ul>
+          {awards.map((a, i) => (
+            <li key={i} className="grid grid-cols-12 gap-4 border-b py-6">
+              <span className="eyebrow col-span-3 md:col-span-2">{a.year}</span>
+              <span className="col-span-9 font-serif text-xl md:col-span-6">{a.title}</span>
+              <span className="col-span-9 col-start-4 text-sm text-muted-foreground md:col-span-4 md:col-start-auto">{a.issuer}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+    </>
   );
 }
