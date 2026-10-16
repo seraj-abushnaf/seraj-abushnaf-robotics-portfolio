@@ -108,7 +108,8 @@ function Dashboard() {
 
   function pick(list: FileList | null) {
     if (!list) return;
-    setFiles((f) => [...f, ...Array.from(list).map((file) => ({ file, preview: URL.createObjectURL(file), caption: "" }))]);
+    const added = Array.from(list).map((file) => ({ file, preview: URL.createObjectURL(file), caption: "" }));
+    setFiles((f) => [...f, ...added]);
   }
 
   async function upload() {
