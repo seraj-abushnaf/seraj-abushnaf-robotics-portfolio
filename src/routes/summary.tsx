@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageIntro } from "@/components/site";
-import { projects, awards } from "@/lib/content";
+import { projects, awards, skills, business, profile } from "@/lib/content";
 
 export const Route = createFileRoute("/summary")({
   head: () => ({
@@ -30,14 +30,20 @@ function Page() {
         A one-page overview for admissions officers and technical reviewers.
       </PageIntro>
       <div className="mx-auto max-w-6xl px-6">
-        <Row label="Profile"><p className="font-serif text-2xl">Add a two-sentence profile.</p></Row>
+        <Row label="Profile"><p className="font-serif text-2xl">{profile}</p></Row>
         <Row label="Projects">
           <ul className="space-y-2">{projects.map((p) => <li key={p.slug}><span className="font-serif text-xl">{p.title}</span> <span className="text-sm text-muted-foreground">— {p.category}</span></li>)}</ul>
         </Row>
-        <Row label="Awards">
-          <ul className="space-y-2">{awards.map((a, i) => <li key={i} className="font-serif text-xl">{a.title}, {a.year}</li>)}</ul>
+        <Row label="Team Awards">
+          <ul className="space-y-2">{awards.filter((a) => a.type === "Team").map((a) => <li key={a.title} className="font-serif text-xl">{a.title}{a.year && `, ${a.year}`}</li>)}</ul>
         </Row>
-        <Row label="Skills"><p className="text-muted-foreground">Add your technical skills and tools.</p></Row>
+        <Row label="Individual">
+          <ul className="space-y-2">{awards.filter((a) => a.type === "Individual").map((a) => <li key={a.title} className="font-serif text-xl">{a.title}</li>)}</ul>
+        </Row>
+        <Row label="Business">
+          <ul className="space-y-2">{business.map((b) => <li key={b.title}><span className="font-serif text-xl">{b.title}</span> <span className="text-sm text-muted-foreground">— {b.detail}</span></li>)}</ul>
+        </Row>
+        <Row label="Skills"><p className="text-muted-foreground">{skills.join(" · ")}</p></Row>
         <Row label="Contact"><p className="text-muted-foreground">Add your email or contact link.</p></Row>
       </div>
     </>
