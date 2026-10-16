@@ -1,39 +1,46 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageIntro, Placeholder } from "@/components/site";
-import { proofGroups } from "@/lib/content";
+import { MediaGrid } from "@/components/media-grid";
+import { CATEGORIES, useMedia } from "@/lib/media";
 
 export const Route = createFileRoute("/proof")({
   head: () => ({
     meta: [
       { title: "Proof — Seraj Abushnaf" },
-      { name: "description", content: "Organised evidence gallery: certificates, build photos and CAD renders." },
+      { name: "description", content: "Evidence gallery: certificates, trophies, robots, projects and CAD designs." },
       { property: "og:title", content: "Proof — Seraj Abushnaf" },
-      { property: "og:description", content: "Organised evidence gallery: certificates, build photos and CAD renders." },
+      { property: "og:description", content: "Evidence gallery: certificates, trophies, robots, projects and CAD designs." },
     ],
   }),
   component: Page,
 });
 
 function Page() {
+  const { data = [], isLoading } = useMedia();
   return (
     <>
       <PageIntro eyebrow="Evidence" title="Proof gallery">
         Certificates, photographs and design files supporting each project and award.
       </PageIntro>
       <div className="mx-auto max-w-6xl space-y-20 px-6">
-        {proofGroups.map((g) => (
-          <section key={g.name}>
-            <div className="flex items-baseline justify-between border-b pb-4">
-              <h2 className="text-3xl">{g.name}</h2>
-              <span className="eyebrow">{g.count} items</span>
-            </div>
-            <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-              {Array.from({ length: g.count }).map((_, i) => (
-                <Placeholder key={i} label={`${g.name} ${i + 1}`} className={i === 0 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"} />
-              ))}
-            </div>
-          </section>
-        ))}
+        {CATEGORIES.map((c) => {
+          const items = data.filter((m) => m.category === c);
+          return (
+            <section key={c}>
+              <div className="flex items-baseline justify-between border-b pb-4">
+                <h2 className="text-3xl">{c}</h2>
+                <span className="eyebrow">{items.length} items</span>
+              </div>
+              {items.length ? (
+                <MediaGrid items={items} />
+              ) : (
+                <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
+                  <Placeholder label={isLoading ? "Loading" : `${c} — coming soon`} className="col-span-2 aspect-[2/1]" />
+                </div>
+              )}
+            </section>
+          );
+        })}
       </div>
     </>
   );
