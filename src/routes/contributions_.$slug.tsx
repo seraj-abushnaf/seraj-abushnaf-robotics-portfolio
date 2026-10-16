@@ -1,6 +1,13 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { Placeholder } from "@/components/site";
 import { projects } from "@/lib/content";
+import { useMedia } from "@/lib/media";
+import { MediaGrid } from "@/components/media-grid";
+
+function ProjectMedia({ slug, fallback }: { slug: string; fallback: string[] }) {
+  const { data = [] } = useMedia();
+  return <MediaGrid items={data.filter((m) => m.project_slug === slug)} fallback={fallback} />;
+}
 
 export const Route = createFileRoute("/contributions_/$slug")({
   loader: ({ params }) => {
@@ -44,11 +51,7 @@ function Page() {
         </aside>
       </div>
       <p className="eyebrow mt-20">Supporting Evidence</p>
-      <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-3">
-        {p.evidence.map((e, i) => (
-          <Placeholder key={e} label={e} className={i === 0 ? "col-span-2 aspect-[4/3] md:col-span-1 md:aspect-[3/4]" : "aspect-[3/4]"} />
-        ))}
-      </div>
+      <ProjectMedia slug={p.slug} fallback={p.evidence} />
     </article>
   );
 }

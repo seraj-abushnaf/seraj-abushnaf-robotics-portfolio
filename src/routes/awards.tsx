@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageIntro, Placeholder } from "@/components/site";
 import { awards } from "@/lib/content";
+import { useMedia } from "@/lib/media";
+
+function AwardImage({ title }: { title: string }) {
+  const { data = [] } = useMedia();
+  const m = data.find((x) => x.award_title === title);
+  if (!m) return <Placeholder label="Certificate" className="aspect-[4/3] md:col-span-5" />;
+  return <img src={m.url} alt={m.caption || title} className="aspect-[4/3] w-full object-cover md:col-span-5" />;
+}
 
 export const Route = createFileRoute("/awards")({
   head: () => ({
@@ -24,7 +32,7 @@ function Page() {
           <div className="mb-16 space-y-16">
             {awards.filter((a) => a.type === type).map((a) => (
               <div key={a.title} className="grid gap-6 border-b pb-16 md:grid-cols-12">
-                <Placeholder label="Certificate" className="aspect-[4/3] md:col-span-5" />
+                <AwardImage title={a.title} />
                 <div className="md:col-span-6 md:col-start-7 md:pt-8">
                   <p className="eyebrow">{a.type}{a.year && ` · ${a.year}`}</p>
                   <h3 className="mt-3 text-4xl">{a.title}</h3>
