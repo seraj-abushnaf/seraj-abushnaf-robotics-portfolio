@@ -1,68 +1,39 @@
 # Seraj Abushnaf Robotics Portfolio
+Seraj Abushnaf | Robotics & Engineering
 
-Transform this Maison Artisan template into a premium personal robotics and engineering portfolio for Seraj Abushnaf.
+I’m Seraj Abushnaf, a student, robotics programmer, and engineering enthusiast from Libya, interested in robotics, autonomous systems, CAD design, and software development.
 
-IMPORTANT: Preserve the original template’s sophisticated editorial art direction. Do not replace it with a generic AI-generated portfolio design.
+Robotics Experience
 
-KEEP:
+* Lead Programmer & Robot Designer — TLC CyberKnights and LyBrix.
+* Competed across three FIRST Tech Challenge (FTC) seasons.
+* Contributed to autonomous programming, robot design, testing, and performance improvements.
+* Earned recognition through FTC competitions, including the Control Award and Promote Award in the 2025–26 season.
+* Achieved 7th place nationally in Libya during the 2024–25 FTC season.
 
-The elegant serif headings paired with clean sans-serif body typography.
+Projects & Technical Experience
 
-The refined editorial composition and asymmetric image grids.
+* FTC Robotics: Autonomous routines, robot programming, CAD, and mechanical design.
+* Arduino Projects: Developed and tested prototypes involving fire detection, toxic gas detection, and automated responses.
+* 3D Printing: Built a 3D-printing business focused on FTC robot parts and components.
+* Web Development: Built websites for businesses and organizations.
+* Robotics Education: Helped teach Arduino and FTC fundamentals through practical demonstrations.
 
-Large, carefully cropped photography.
+Skills & Interests
 
-Generous whitespace, subtle dividers, and restrained animations.
+* FTC Blocks Programming
+* Onshape CAD
+* Arduino
+* Robotics Design & Testing
+* 3D Printing
+* Web Development
 
-The polished mobile navigation and high-end visual hierarchy.
+Portfolio
 
-ADAPT:
+Explore my robotics experience, projects, achievements, and engineering work:
 
-Replace the homeware store identity with a personal robotics and engineering portfolio.
+Website: https://seraj-abushnaf-robotics-portfolio.lovable.app
 
-Replace product collections with engineering projects, FTC robotics contributions, awards, CAD designs, and evidence galleries.
+Current Goals
 
-Replace product detail pages with project case studies containing images, my personal role, technical details, and supporting evidence.
-
-Replace shopping navigation with Home, Contributions, Awards, Proof, and Summary.
-
-Remove shopping cart, checkout, wishlist, pricing, and all other irrelevant ecommerce features.
-
-Use a restrained palette of cream, white, charcoal, deep navy, and subtle green accents while preserving the template’s editorial quality.
-
-Keep real robotics photos and certificates as replaceable image placeholders until I upload evidence.
-
-The homepage should introduce Seraj Abushnaf with a strong editorial hero section, a concise biography, selected projects, and featured achievements.
-
-Create a professional Awards archive and an organized Proof gallery. Make the site suitable for university applications and technical audiences.
-
-Do not invent facts, achievements, photographs, or statistics.
-
-Build on the existing template rather than rebuilding its design system. Prioritize visual fidelity to Maison Artisan and ensure every page works beautifully on mobile.
-
-
-
-Use little credit
-
-This project was built with [Lovable](https://lovable.dev).
-
-**Live app**: https://seraj-abushnaf-robotics-portfolio.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/39e5de11-de01-42ba-a1fe-2c5ef7eb3ea2).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
-
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
-npm run dev
-```
+Continuing to develop my engineering skills, build practical robotics projects, and contribute to robotics education and innovation.
