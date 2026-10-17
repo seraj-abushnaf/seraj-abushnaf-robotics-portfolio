@@ -11,10 +11,14 @@ function pick(data: Media[], i: number, slug?: string) {
       !/mentor|award|team|certificate|trophy|student|people|ceremony|championship|competition|academy|event/i.test(m.caption) &&
       (["Robots", "CAD"].includes(m.category) || /design|cod|build|robot|sensor|cad|shooter|program/i.test(m.caption)),
   );
-  const own = slug ? ok.find((m) => m.project_slug === slug) : undefined;
+  // Robot and CAD photos first: they never show people.
+  ok.sort((a, b) => Number(!["Robots", "CAD"].includes(a.category)) - Number(!["Robots", "CAD"].includes(b.category)));
+  const hero = ok[0];
+  if (i === 0) return hero;
+  const own = slug ? ok.find((m) => m.project_slug === slug && m !== hero) : undefined;
   if (own) return own;
-  const pool = ok.filter((m) => m.project_slug !== slug);
-  return pool.length ? pool[i % pool.length] : ok[0];
+  const pool = ok.filter((m) => m !== hero);
+  return pool.length ? pool[i % pool.length] : hero;
 }
 
 function HomeImage({ i, slug, label, className }: { i: number; slug?: string; label: string; className: string }) {
