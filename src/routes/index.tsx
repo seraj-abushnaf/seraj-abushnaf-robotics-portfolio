@@ -4,18 +4,24 @@ import { projects, awards } from "@/lib/content";
 import { useMedia, type Media } from "@/lib/media";
 
 function pick(data: Media[], i: number, slug?: string) {
-  const own = slug ? data.find((m) => m.project_slug === slug) : undefined;
+  // Home page: robots, CAD and code only — skip people, mentoring, awards, certificates.
+  const ok = data.filter(
+    (m) =>
+      !["Certificates", "Trophies"].includes(m.category) &&
+      !/mentor|award|team|certificate|trophy|student|people|ceremony/i.test(m.caption) &&
+      (["Robots", "CAD"].includes(m.category) || /design|cod|build|robot|sensor|cad|shooter|program/i.test(m.caption)),
+  );
+  const own = slug ? ok.find((m) => m.project_slug === slug) : undefined;
   if (own) return own;
-  const pref = data.filter((m) => ["Robots", "Projects", "Photos", "CAD"].includes(m.category));
-  const pool = pref.length ? pref : data;
-  return pool.length ? pool[i % pool.length] : undefined;
+  const pool = ok.filter((m) => m.project_slug !== slug);
+  return pool.length ? pool[i % pool.length] : ok[0];
 }
 
 function HomeImage({ i, slug, label, className }: { i: number; slug?: string; label: string; className: string }) {
   const { data = [] } = useMedia();
   const m = pick(data, i, slug);
   if (!m?.url) return <Placeholder label={label} className={className} />;
-  return <img src={m.url} alt={m.caption || label} className={`w-full object-cover ${className}`} />;
+  return <img src={m.url} alt={m.caption || label} loading={i === 0 ? "eager" : "lazy"} fetchPriority={i === 0 ? "high" : "auto"} decoding="async" className={`w-full object-cover ${className}`} />;
 }
 
 export const Route = createFileRoute("/")({
