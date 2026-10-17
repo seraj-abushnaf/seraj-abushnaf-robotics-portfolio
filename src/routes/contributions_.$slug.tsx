@@ -22,6 +22,7 @@ export const Route = createFileRoute("/contributions_/$slug")({
           { name: "description", content: loaderData.summary },
           { property: "og:title", content: loaderData.title },
           { property: "og:description", content: loaderData.summary },
+          { property: "og:url", content: `https://seraj-abushnaf-robotics-portfolio.lovable.app/contributions/${loaderData.slug}` },
         ]
       : [{ title: "Project not found" }, { name: "robots", content: "noindex" }],
   }),

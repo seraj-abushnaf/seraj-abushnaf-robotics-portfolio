@@ -44,7 +44,6 @@ function Page() {
           <ul className="space-y-2">{business.map((b) => <li key={b.title}><span className="font-serif text-xl">{b.title}</span> <span className="text-sm text-muted-foreground">— {b.detail}</span></li>)}</ul>
         </Row>
         <Row label="Skills"><p className="text-muted-foreground">{skills.join(" · ")}</p></Row>
-        <Row label="Contact"><p className="text-muted-foreground">Add your email or contact link.</p></Row>
       </div>
     </>
   );

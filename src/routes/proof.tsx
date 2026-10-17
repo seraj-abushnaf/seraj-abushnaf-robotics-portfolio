@@ -10,6 +10,7 @@ export const Route = createFileRoute("/proof")({
       { name: "description", content: "Evidence gallery: certificates, trophies, robots, projects and CAD designs." },
       { property: "og:title", content: "Proof — Seraj Abushnaf" },
       { property: "og:description", content: "Evidence gallery: certificates, trophies, robots, projects and CAD designs." },
+      { property: "og:url", content: "https://seraj-abushnaf-robotics-portfolio.lovable.app/proof" },
     ],
   }),
   component: Page,
