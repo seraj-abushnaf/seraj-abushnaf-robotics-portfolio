@@ -8,7 +8,7 @@ function pick(data: Media[], i: number, slug?: string) {
   const ok = data.filter(
     (m) =>
       !["Certificates", "Trophies"].includes(m.category) &&
-      !/mentor|award|team|certificate|trophy|student|people|ceremony/i.test(m.caption) &&
+      !/mentor|award|team|certificate|trophy|student|people|ceremony|championship|competition|academy|event.test(m.caption) &&
       (["Robots", "CAD"].includes(m.category) || /design|cod|build|robot|sensor|cad|shooter|program/i.test(m.caption)),
   );
   const own = slug ? ok.find((m) => m.project_slug === slug) : undefined;
