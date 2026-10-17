@@ -25,5 +25,5 @@ export async function fetchMedia(): Promise<Media[]> {
 }
 
 export function useMedia() {
-  return useQuery({ queryKey: ["media"], queryFn: fetchMedia });
+  return useQuery({ queryKey: ["media"], queryFn: fetchMedia, staleTime: 1000 * 60 * 60, refetchOnWindowFocus: false });
 }

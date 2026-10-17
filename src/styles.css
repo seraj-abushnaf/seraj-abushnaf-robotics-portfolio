@@ -93,3 +93,33 @@
   from { opacity: 0; transform: translateY(14px); }
   to { opacity: 1; transform: none; }
 }
+
+@utility side-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  pointer-events: none;
+  z-index: 30;
+  background: color-mix(in oklab, var(--foreground) 10%, transparent);
+  overflow: hidden;
+}
+
+.side-rail-dot {
+  position: absolute;
+  left: -1px;
+  width: 3px;
+  height: 18vh;
+  background: linear-gradient(to bottom, transparent, var(--primary), transparent);
+  animation: rail-move 7s linear infinite;
+  will-change: transform;
+}
+
+@keyframes rail-move {
+  from { transform: translateY(-20vh); }
+  to { transform: translateY(120vh); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-rail-dot, .fade-up { animation: none; }
+}

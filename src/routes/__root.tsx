@@ -122,6 +122,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      <div aria-hidden className="side-rail left-2 md:left-6"><span className="side-rail-dot" /></div>
+      <div aria-hidden className="side-rail right-2 md:right-6"><span className="side-rail-dot" style={{ animationDelay: "-3.5s" }} /></div>
+      <p aria-hidden className="eyebrow pointer-events-none fixed left-0 top-1/2 z-30 hidden origin-top-left -translate-y-1/2 -rotate-90 translate-x-[14px] whitespace-nowrap opacity-60 lg:block">FTC · Robotics · CAD · Code</p>
       <Header />
       <main><Outlet /></main>
       <Footer />
