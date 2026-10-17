@@ -1,6 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Placeholder } from "@/components/site";
 import { projects, awards } from "@/lib/content";
+import { useMedia, type Media } from "@/lib/media";
+
+function pick(data: Media[], i: number, slug?: string) {
+  const own = slug ? data.find((m) => m.project_slug === slug) : undefined;
+  if (own) return own;
+  const pref = data.filter((m) => ["Robots", "Projects", "Photos", "CAD"].includes(m.category));
+  const pool = pref.length ? pref : data;
+  return pool.length ? pool[i % pool.length] : undefined;
+}
+
+function HomeImage({ i, slug, label, className }: { i: number; slug?: string; label: string; className: string }) {
+  const { data = [] } = useMedia();
+  const m = pick(data, i, slug);
+  if (!m?.url) return <Placeholder label={label} className={className} />;
+  return <img src={m.url} alt={m.caption || label} className={`w-full object-cover ${className}`} />;
+}
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -27,7 +43,7 @@ function Index() {
           </p>
           <Link to="/contributions" className="eyebrow mt-10 inline-block border-b border-foreground pb-1 text-foreground">View contributions</Link>
         </div>
-        <Placeholder label="Portrait or robot" className="aspect-[4/5] md:col-span-6" />
+        <HomeImage i={0} label="Portrait or robot" className="aspect-[4/5] md:col-span-6" />
       </section>
 
       <section className="mx-auto mt-28 grid max-w-6xl gap-8 border-t px-6 pt-14 md:grid-cols-12">
@@ -46,7 +62,7 @@ function Index() {
           {projects.slice(0, 3).map((p, i) => (
             <Link key={p.slug} to="/contributions/$slug" params={{ slug: p.slug }}
               className={`group ${i === 0 ? "md:col-span-7" : "md:col-span-5"} ${i === 2 ? "md:col-start-6 md:col-span-7" : ""}`}>
-              <Placeholder label={p.category} className={`${i === 0 ? "aspect-[4/3]" : "aspect-square"} transition-opacity group-hover:opacity-80`} />
+              <HomeImage i={i + 1} slug={p.slug} label={p.category} className={`${i === 0 ? "aspect-[4/3]" : "aspect-square"} transition-opacity group-hover:opacity-80`} />
               <p className="eyebrow mt-4">{p.category}</p>
               <h3 className="mt-1 text-2xl">{p.title}</h3>
             </Link>
