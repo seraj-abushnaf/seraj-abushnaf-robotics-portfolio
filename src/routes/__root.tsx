@@ -81,6 +81,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Seraj Abushnaf" },
 { name: "google-site-verification", content: "BuLglw19L12HMwx15KrGDpTCRiTJymNWQBJy4rVZkuo" },
+{ name: "google-site-verification", content: "5b4CM7XkrY9LIsjlj3b58lBCrKq68Ej08fEmLEVGsFk" },
       { name: "author", content: "Seraj Abushnaf" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
