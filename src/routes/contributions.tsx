@@ -9,6 +9,7 @@ export const Route = createFileRoute("/contributions")({
       { name: "description", content: "Engineering projects, FTC robotics contributions and CAD designs." },
       { property: "og:title", content: "Contributions — Seraj Abushnaf" },
       { property: "og:description", content: "Engineering projects, FTC robotics contributions and CAD designs." },
+      { property: "og:url", content: "https://seraj-abushnaf-robotics-portfolio.lovable.app/contributions" },
     ],
   }),
   component: Page,

@@ -17,6 +17,7 @@ export const Route = createFileRoute("/awards")({
       { name: "description", content: "Team and individual awards in robotics, science and academics." },
       { property: "og:title", content: "Awards — Seraj Abushnaf" },
       { property: "og:description", content: "Team and individual awards in robotics, science and academics." },
+      { property: "og:url", content: "https://seraj-abushnaf-robotics-portfolio.lovable.app/awards" },
     ],
   }),
   component: Page,

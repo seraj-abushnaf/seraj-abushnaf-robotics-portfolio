@@ -12,3 +12,5 @@ Allow: /
 
 User-agent: *
 Allow: /
+
+Sitemap: https://seraj-abushnaf-robotics-portfolio.lovable.app/sitemap.xml
